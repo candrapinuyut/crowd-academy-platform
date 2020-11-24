@@ -46,7 +46,7 @@ function RegisterPage({ history,loading,error,registerPelajar,registerPengajar})
       tempat_lahir:'',
       tanggal_lahir:'',
       password:data.password,
-      keahlian:'',
+      keahlian:data.keahlian,
       deskripsi:'',
     };
 
@@ -191,6 +191,23 @@ function RegisterPage({ history,loading,error,registerPelajar,registerPengajar})
                           ref={register({ required: true, minLength: 5 })}
                           isInvalid={errors.nohp}
                           placeholder="masukan no hp"
+                        />
+                        </Form.Group>
+                        <div className="invalid-feedback">
+                          This field is required
+                        </div>
+                    </Col>
+                    <Col md={6} className='mb-4'>
+                      <Form.Group>
+                        <Form.Label className='text-muted'>keahlian</Form.Label>
+                        <Form.Control
+                          size="md"
+                          disabled={loading}
+                          type="text"
+                          name="keahlian"
+                          ref={register({ required: true, minLength: 5 })}
+                          isInvalid={errors.keahlian}
+                          placeholder="masukan keahlian"
                         />
                         </Form.Group>
                         <div className="invalid-feedback">

@@ -171,15 +171,27 @@ const KelasPage = ({getKelas}) =>{
                               <div className='d-flex flex-column'>
                                 <strong>{a.judul}</strong>
                                 <div className='d-flex flex-row mt-4'>
-                                  <img className='rounded-circle' width={50} src="https://imgix2.ruangguru.com/assets/miscellaneous/image_hysvry_8097.jpg" alt=""/>
+                                  <div
+                                    className='mr-3'
+                                    style={{fontWeight:'bold',color:'#FFF',width:50,backgroundColor:'#19B5FE',
+                                      height:50,borderRadius:'50%',display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                                    {
+                                      a.authors.nama.split(' ').map((e,f)=>(
+                                        <div>{e.substr(0,1).toUpperCase()}</div>
+                                      ))
+                                    }
+                                  </div>
                                   <div className='d-flex flex-column'>
+                                    <span className='small text-muted'>Pengajar</span>
                                     <strong>{a.authors.nama}</strong>
                                   <span className='text-muted small'>{a.authors.alamat}</span>
                                   </div>
                                 </div>
                               </div>
-                               <Button as={Link}  to={`/kelas/detail/${a._id}`}variant='primary' className='btn-sm float-right'>Detail</Button>
                             </Card.Body>
+                            <Card.Footer>
+                              <Button as={Link}  to={`/kelas/detail/${a._id}`}variant='primary' className='btn-sm float-right'>Detail</Button>
+                            </Card.Footer>
                           </Card>
                         </Col>
                   )

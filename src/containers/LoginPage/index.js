@@ -27,16 +27,24 @@ function LoginPage({ getToken,getAdminToken, loading, error,level }) {
   const { register,setValue,errors, handleSubmit } = useForm();
 
   const [errorLogin,setErrorLogin] = useState(false);
+  const [loadings,setLoadings] = useState(false);
 
  const onSubmit = (data) =>{
    //alert(123)
+   setErrorLogin(false)
+   setLoadings(true);
    console.log(data)
    if(data.levels==0)
-    getToken(data)
+    getToken(data).then((f)=>{
+      if(f.type=='GET_TOKEN_FAIL')
+      setErrorLogin(true)
+      setLoadings(false);
+    })
    else
     getAdminToken(data).then((f)=>{
       if(f.type=='GET_TOKEN_ADMIN_FAIL')
       setErrorLogin(true)
+       setLoadings(false);
     })
  }
  useEffect(()=>{
@@ -111,7 +119,7 @@ function LoginPage({ getToken,getAdminToken, loading, error,level }) {
                     <Form.Group>
                           <Form.Control
                             size="lg"
-                            disabled={loading}
+                            disabled={loadings}
                             type="text"
                             name="username"
                             ref={register}
@@ -122,7 +130,7 @@ function LoginPage({ getToken,getAdminToken, loading, error,level }) {
                   <Form.Group>
                     <Form.Control
                       size="lg"
-                      disabled={loading}
+                      disabled={loadings}
                       type="password"
                       name="password"
                       ref={register}
@@ -170,13 +178,13 @@ function LoginPage({ getToken,getAdminToken, loading, error,level }) {
               <Col>
                 <Button
                   variant="outline-primary"
-                  disabled={loading}
+                  disabled={loadings}
                   size="lg"
                   block
                   type="submit"
                   className="d-flex justify-content-center">
                   Login
-                  {loading && (
+                  {loadings && (
                     <ReactLoading
                       type="bubbles"
                       color="#07AC86"
@@ -200,14 +208,7 @@ function LoginPage({ getToken,getAdminToken, loading, error,level }) {
                   type="submit"
                   className="d-flex justify-content-center mt-3">
                   Register
-                  {loading && (
-                    <ReactLoading
-                      type="bubbles"
-                      color="#07AC86"
-                      height={30}
-                      width={30}
-                    />
-                  )}
+
                 </Button>
 
               </Col>

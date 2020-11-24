@@ -81,7 +81,7 @@ const KelasDetailScreen = ({app,registerKelas,history,match,showKelas,showEnrol}
                           </div>
                           <div className="d-flex flex-column">
                             <span className='text-muted small'>Pengajar</span>
-                            <span>{dataList.authors.alamat}</span>
+                            <span>{dataList.authors.nama}</span>
                           </div>
                         </Col>
                         <Col md={6} className='d-flex justify-content-end'>

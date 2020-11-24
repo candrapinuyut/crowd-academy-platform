@@ -75,44 +75,79 @@ const KelasDoneScreen = ({getKelasDone}) =>{
 
         <Row>
           {
-            dataList && dataList.length>0 && loding==false && (
+            loding == true &&
+            (
+              <Card>
+               <Card.Body>{
+                   (
+                     Array.from({ length: 4 }, (a, ak) => (
+                       <tr key={ak}>
+                         {Array.from({ length: 6 }, (b, bk) => (
+                           <td key={bk}>
+                             <TwoLineLoader />
+                           </td>
+                         ))}
+                         <td> </td>
+                       </tr>
+                     ))
+                   )
+                 }
+               </Card.Body>
+             </Card>
+             
+            ) || (
+              dataList && dataList.length>0  && (
 
-            dataList.map((a,b)=>
-               (
-                    <Col key={a} md={3} className='mb-4'>
-                      <Card>
-                        <img className="card-img-top" height='180' src={a.idEnrolkelas.kelas.image} alt="Card image cap"/>
-                        <Card.Body>
-                          <div className='d-flex flex-column'>
-                            <strong>{a.idEnrolkelas.kelas.judul}</strong>
-                            <div className='d-flex flex-row mt-4'>
-                              <img className='rounded-circle' width={50} src="https://imgix2.ruangguru.com/assets/miscellaneous/image_hysvry_8097.jpg" alt=""/>
-                              <div className='d-flex flex-column'>
-                                <strong>{a.idEnrolkelas.kelas.authors.nama}</strong>
-                              <span className='text-muted small'>{a.idEnrolkelas.kelas.authors.alamat}</span>
+              dataList.map((a,b)=>
+                 (
+                      <Col key={a} md={3} className='mb-4'>
+                        <Card>
+                          <img className="card-img-top" height='180' src={a.idEnrolkelas.kelas.image} alt="Card image cap"/>
+                          <Card.Body>
+                            <div className='d-flex flex-column'>
+                              <strong>{a.idEnrolkelas.kelas.judul}</strong>
+                              <div className='d-flex flex-row mt-4'>
+                                <div
+                                  className='mr-3'
+                                  style={{fontWeight:'bold',color:'#FFF',width:50,backgroundColor:'#19B5FE',
+                                    height:50,borderRadius:'50%',display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                                  {
+                                    a.idEnrolkelas.kelas.authors.nama.split(' ').map((e,f)=>(
+                                      <div>{e.substr(0,1).toUpperCase()}</div>
+                                    ))
+                                  }
+                                </div>
+
+                                <div className='d-flex flex-column'>
+                                  <span className='small text-muted'>Pengajar</span>
+
+                                  <strong>{a.idEnrolkelas.kelas.authors.nama}</strong>
+                                <span className='text-muted small'>{a.idEnrolkelas.kelas.authors.alamat}</span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                           <Button as={Link}  to={`/kelas/otw/${a.idEnrolkelas._id}`}variant='primary' className='btn-sm float-right'>Detail</Button>
-                        </Card.Body>
-                      </Card>
-                    </Col>
+
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                )
               )
+
+            ) || (
+                 <Col md={12}>
+                  <Card>
+                     <Card.Body>
+                       <div className='d-flex  flex-column align-items-center justify-content-center'>
+                         <img width={500} src="https://image.freepik.com/free-vector/classroom-concept-illustration_114360-2975.jpg" alt=""/>
+                       <span class='text-muted mt-3'>Mohon Maaf, Anda Belum Menyelesaikan Kelas..</span>
+                       </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+
+            )
             )
 
-          ) || (
-               <Col md={12}>
-                <Card>
-                   <Card.Body>
-                     <div className='d-flex  flex-column align-items-center justify-content-center'>
-                       <img width={500} src="https://image.freepik.com/free-vector/classroom-concept-illustration_114360-2975.jpg" alt=""/>
-                     <span class='text-muted mt-3'>Mohon Maaf, Anda Belum Menyelesaikan Kelas..</span>
-                     </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-          )
          }
 
         </Row>

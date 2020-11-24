@@ -8,6 +8,7 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import {getArtikel} from './actions';
 import moment from 'moment';
+import ReactHtmlParser from 'react-html-parser';
 
 const ArtikelPage = ({getArtikel}) =>{
     const [loading,setLoading]=useState(true);
@@ -30,7 +31,7 @@ const ArtikelPage = ({getArtikel}) =>{
             loading==false && data && (
 
               data.map((a,b)=>(
-                <Col md={6}>
+                <Col md={6} className='d-flex'>
                   <div className="card mb-3">
                     <div className="card-horizontal">
                         <div class="img-square" style={{overflow: 'hidden',height:200}}>
@@ -45,7 +46,8 @@ const ArtikelPage = ({getArtikel}) =>{
                              </span>
                             </div>
                             <p className="small card-text ">
-                              {a.deskripsi}
+                               {ReactHtmlParser(a.deskripsi.substr(0,250))}
+
                             </p>
                             <Button as={Link} to={`/artikel/detail/${a._id}`} className='mb-3 float-right btn-sm'>Detail</Button>
 
