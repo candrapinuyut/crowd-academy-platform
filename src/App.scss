@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+@import "./scss/span.scss";
+
+$body-bg: #f9f9f9;
+$font-family-base: 'Poppins', sans-serif;
+$primary: #0984e3;
+$primarySoft: #74b9ff;
+$nav-tabs-border-radius: 10px;
+$nav-tabs-link-active-bg: white;
+
+.nav.nav-tabs {
+  .nav-item {
+    font-weight: bold;
+    .nav-link {
+      min-width: 140px;
+      padding: 0.8rem 1rem;
+      background-color: #cccccc;
+      color: #707070;
+    }
+    .nav-link.active {
+      background-color: white;
+      color: $primary;
+    }
+    margin-right: 5px;
+  }
+}
+.c-primary{
+  color:#82589F;
+}
+.c-primary-soft{
+  color:$primarySoft;
+}
+
+.stf-badge {
+  border-radius: 50px !important;
+  font-size: 8pt !important;
+  display: flex !important;
+  min-width: 20px;
+  height: 20px;
+  text-align: center;
+  align-items: center;
+}
+
+.stf-badge.badge-dark {
+  background-color: #707070 !important;
+}
+@import 'bootstrap/scss/bootstrap.scss';
+
+.btn.btn-transparent.dropdown-toggle:after {
+  content: none;
+}
+
+*:hover,
+*:focus,
+*:active {
+  outline: none;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.modal-widget {
+  .modal-dialog {
+    margin: 0px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 503px;
+    .modal-content {
+      height: 100%;
+      box-shadow: -3px 3px 6px #00000029;
+      border-radius: 15px 0px 0px 15px;
+    }
+  }
+}
+a.active
+{
+    color: $primary !important;
+}
+.list-group-item.active{
+  color: #FFF !important;
+}
